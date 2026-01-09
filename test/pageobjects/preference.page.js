@@ -32,4 +32,12 @@ export default class PreferencePage {
     async setWifiName(name) {
         await this.wifiInput.setValue(name);
     }
+
+    get wifiDialogTitle() {
+        return $('android=new UiSelector().text("WiFi settings")');
+    }
+
+    get wifiInput() {
+        return $('android.widget.EditText');
+    }
 }
