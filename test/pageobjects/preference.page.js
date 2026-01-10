@@ -30,7 +30,33 @@ export default class PreferencePage {
     }
 
     async setWifiName(name) {
+        await this.wifiInput.waitForExist({ timeout: 2000 });
         await this.wifiInput.setValue(name);
+    }
+
+    async openSwitchView() {
+        await this.switchView.waitForDisplayed({ timeout: 2000 });
+        await this.switchView.click();
+    }
+    
+    async clickCheckBoxPreference() {
+        await this.checkBoxPreference.waitForDisplayed({ timeout: 3000 });
+        await this.checkBoxPreference.click();
+    }
+
+    async displayCheckBoxText() {
+        await this.checkBoxPreference.waitForDisplayed();
+        return await this.checkBoxText.getText();
+    }
+
+    async toggleSwitchPreference() {
+        await this.switchToggle.waitForDisplayed();
+        await this.switchToggle.click();
+    }
+
+    async displaySwitchToggleText() {
+        await this.switchToggle.waitForDisplayed();
+        return await this.switchToggleText.getText();
     }
 
     get wifiDialogTitle() {
@@ -39,5 +65,25 @@ export default class PreferencePage {
 
     get wifiInput() {
         return $('android.widget.EditText');
+    }
+
+    get switchView() {
+        return $('~9. Switch');
+    }
+    
+    get checkBoxPreference() { 
+        return $('android=new UiSelector().resourceId("android:id/checkbox")'); 
+    }
+
+    get checkBoxText() {
+        return $('android=new UiSelector().text("Checkbox preference")');
+    }
+
+    get switchToggle(){
+        return $('android=new UiSelector().resourceId("android:id/switch_widget")');
+    }
+
+    get switchToggleText() {
+        return $('android=new UiSelector().text("Switch preference")');
     }
 }

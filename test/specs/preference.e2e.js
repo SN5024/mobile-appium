@@ -38,4 +38,24 @@ describe('ApiDemos Preference Menu Tests', () => {
         expect(value).to.equal(testName);
         await preferencePage.okButton.click();
     });
+
+    it('should verify Switch View is present and clickable', async () => {
+        await driver.back();
+        await preferencePage.openSwitchView();
+        const switchTitle = await $('android.widget.TextView').getText(); // Switch View screen option
+        expect(switchTitle).to.include('Switch');
+    });
+    
+    it('should verify checkbox preference is present and clickable', async () => {
+        await preferencePage.clickCheckBoxPreference();
+        const checkBoxTitle = await preferencePage.displayCheckBoxText(); // Checkbox preference
+        expect(checkBoxTitle).to.include('Checkbox');
+    });
+
+    it('should verify switch preference toggle is present and clickable', async () => {
+        await preferencePage.toggleSwitchPreference();
+        const switchTitle = await preferencePage.displaySwitchToggleText(); // Switch toggle preference
+        expect(switchTitle).to.include('Switch');
+    });
+   
 });
