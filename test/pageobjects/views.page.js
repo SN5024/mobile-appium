@@ -6,6 +6,10 @@ export default class ViewsPage {
     get animationOption() { 
         return $('~Animation'); 
     }
+     
+    get controlsOption() { 
+        return $('~Controls'); 
+    }
 
     async openViews() {
         await this.viewsMenu.waitForDisplayed();
@@ -15,5 +19,10 @@ export default class ViewsPage {
     async openAnimation() {
         await this.animationOption.waitForDisplayed();
         await this.animationOption.click();
+    }
+    
+    async openControls() { 
+        await this.controlsOption.waitForDisplayed();
+        await this.controlsOption.click();
     }
 }

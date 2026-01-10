@@ -2,23 +2,26 @@
 import PreferencePage from '../pageobjects/preference.page.js';
 import { expect } from 'chai';
 
-describe('ApiDemos Preference Tests', () => {
+describe('ApiDemos Preference Menu Tests', () => {
     let preferencePage;
 
     before(async () => {
         preferencePage = new PreferencePage();
     });
+
     it('should show WiFi disabled by default', async () => {
         await preferencePage.openPreference();
         await preferencePage.openPrefDependencies();
         const beforeToggle = await preferencePage.wifiCheckbox.getAttribute('checked');
         expect(beforeToggle).to.equal('false');
     });
+
     it('should enable WiFi checkbox', async () => {
         await preferencePage.toggleWifi();
         const isChecked = await preferencePage.wifiCheckbox.getAttribute('checked');
         expect(isChecked).to.equal('true');
     });
+
     it('should display and close WiFi settings dialog', async () => {
         await preferencePage.openWifiSettings();
         await preferencePage.wifiInput.waitForDisplayed();
@@ -26,6 +29,7 @@ describe('ApiDemos Preference Tests', () => {
         await preferencePage.okButton.click();
         await preferencePage.wifiInput.waitForDisplayed({ reverse: true });
     });
+    
     it('should set a WiFi name', async () => {
         await preferencePage.openWifiSettings();
         const testName = 'MyNetwork_2026';
