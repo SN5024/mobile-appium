@@ -39,9 +39,9 @@ npm install
 npm install -g appium
 
 # 4. Add your test apps
-# Android: place .apk files in app/android/
-# iOS: place .app bundles in app/ios/
-# ⚡ For large iOS apps, use Git LFS to track .app directories
+Android: place .apk files in app/android/
+iOS: place .app bundles in app/ios/
+⚡ For large iOS apps, use Git LFS to track .app directories
 
 # 5. Running Tests
 # Run Android tests
