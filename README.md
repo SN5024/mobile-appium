@@ -50,6 +50,7 @@ npx wdio config/wdio.conf.js
 # Run iOS tests
 npx wdio config/wdio.ios.conf.js
 
+```
 ---
 
 ## 🗂️ Project Structure
