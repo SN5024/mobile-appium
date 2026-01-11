@@ -54,23 +54,23 @@ npx wdio config/wdio.ios.conf.js
 ---
 
 ## 🗂️ Project Structure
-# mobile-appium/
-# ├── app/
-# │   ├── android/          # Android APKs
-# │   └── ios/              # iOS .app bundles
-# ├── config/
-# │   ├── wdio.conf.js      # Android WDIO config
-# │   └── wdio.ios.conf.js  # iOS WDIO config
-# ├── test/
-# │   └── native/
-# │       ├── android/
-# │       │   ├── pageobjects/
-# │       │   └── specs/
-# │       └── ios/
-# │           ├── pageobjects/
-# │           └── specs/
-# ├── package.json
-# └── README.md
+mobile-appium/
+├── app/
+├── android/          # Android APKs
+└── ios/              # iOS .app bundles
+├── config/
+│   ├── wdio.conf.js      # Android WDIO config
+│   └── wdio.ios.conf.js  # iOS WDIO config
+├── test/
+│   └── native/
+│       ├── android/
+│       │   ├── pageobjects/
+│       │   └── specs/
+│       └── ios/
+│           ├── pageobjects/
+│           └── specs/
+├── package.json
+└── README.md
 
 ---
 
