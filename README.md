@@ -56,21 +56,24 @@ npx wdio config/wdio.ios.conf.js
 ## 🗂️ Project Structure
 mobile-appium/
 ├── app/
-├── android/          # Android APKs
-└── ios/              # iOS .app bundles
+│   ├── android/
+│   │   └── ApiDemos-debug.apk            # Android test app
+│   └── ios/
+│       └── TestApp.app                   # iOS test app
 ├── config/
-│   ├── wdio.conf.js      # Android WDIO config
-│   └── wdio.ios.conf.js  # iOS WDIO config
+│   ├── wdio.conf.js                       # WebdriverIO config for Android
+│   └── wdio.ios.conf.js                   # WebdriverIO config for iOS
 ├── test/
 │   └── native/
 │       ├── android/
-│       │   ├── pageobjects/
-│       │   └── specs/
+│       │   ├── pageobjects/              # Android Page Object classes
+│       │   └── specs/                    # Android E2E test specs
 │       └── ios/
-│           ├── pageobjects/
-│           └── specs/
-├── package.json
-└── README.md
+│           ├── pageobjects/              # iOS Page Object classes
+│           └── specs/                    # iOS E2E test specs
+├── package.json                           # Node.js dependencies and scripts
+├── package-lock.json                      # Lockfile for Node.js dependencies
+└── README.md                              # Project documentation
 
 ---
 
