@@ -9,7 +9,7 @@ export const config = {
     // Specify Test Files
     // ==================
     specs: [
-        '../test/specs/**/*.js'
+        '../test/native/android/specs/**/*.js'
     ],
 
     // ============
@@ -19,13 +19,15 @@ export const config = {
     waitforTimeout: 10000,
     connectionRetryTimeout: 120000,
     capabilities: [{
+        // Android device capabilities
         platformName: 'Android',
-        'appium:deviceName': 'Android Emulator', // or your real device
-        'appium:automationName': 'UiAutomator2',
-        'appium:app': join(import.meta.dirname, '../app/ApiDemos-debug.apk'),
+        'appium:deviceName': 'Android Emulator', // use "adb devices" to get device name
+        'appium:automationName': 'UiAutomator2', 
+        'appium:app': join(import.meta.dirname, '../app/android/ApiDemos-debug.apk'),
         'appium:autoGrantPermissions': true,
         'appium:newCommandTimeout': 240 // Prevents session from closing during debugging
-    }],
+    }
+    ],
 
     // ===================
     // Test Configurations

@@ -1,3 +1,5 @@
+// test/native/android/specs/views.e2e.js
+
 import ViewsPage from '../pageobjects/views.page.js';
 import { expect } from 'chai';
 

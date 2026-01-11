@@ -1,3 +1,4 @@
+// test/native/android/pageobjects/accessibility.page.js
 export default class AccessibilityPage {
 
     // Main menu option
