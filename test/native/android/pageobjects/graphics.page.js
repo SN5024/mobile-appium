@@ -1,7 +1,7 @@
-// /test/pageobjects/graphics.page.js
+// /test/native/android/pageobjects/graphics.page.js
 
 export default class GraphicsPage {
- 
+
     async openGraphics() {
         await this.graphicsMenu.waitForDisplayed();
         await this.graphicsMenu.click();
@@ -14,8 +14,8 @@ export default class GraphicsPage {
     }
 
     async scrollToXfermodes() {
-    await $('android=new UiScrollable(new UiSelector().scrollable(true))' +
-        '.scrollIntoView(new UiSelector().text("Xfermodes"))');
+        await $('android=new UiScrollable(new UiSelector().scrollable(true))' +
+            '.scrollIntoView(new UiSelector().text("Xfermodes"))');
     }
 
     get graphicsMenu() {

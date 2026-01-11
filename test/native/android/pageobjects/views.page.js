@@ -1,3 +1,4 @@
+// test/native/android/pageobjects/views.page.js
 export default class ViewsPage {
     get viewsMenu() { 
         return $('~Views'); 

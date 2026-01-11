@@ -1,4 +1,4 @@
-// /test/specs/accessibility.e2e.js
+// /test/native/android/specs/accessibility.e2e.js
 import AccessibilityPage from '../pageobjects/accessibility.page.js';
 import { expect } from 'chai';
 

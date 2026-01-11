@@ -1,4 +1,4 @@
-// /test/pageobjects/graphics.e2e.js
+// /test/native/android/specs/graphics.e2e.js
 
 import GraphicsPage from '../pageobjects/graphics.page.js';
 import { expect } from 'chai';
@@ -20,5 +20,5 @@ describe('ApiDemos Graphics Menu Tests', () => {
         const xfermodesTitle = await graphicsPage.getXfermodesTitle();
         expect(xfermodesTitle).to.equal('Xfermodes');
     });
-    
+
 });
