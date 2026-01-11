@@ -50,6 +50,8 @@ npx wdio config/wdio.conf.js
 # Run iOS tests
 npx wdio config/wdio.ios.conf.js
 
+---
+
 ## 🗂️ Project Structure
 # mobile-appium/
 # ├── app/
@@ -69,10 +71,14 @@ npx wdio config/wdio.ios.conf.js
 # ├── package.json
 # └── README.md
 
+---
+
 ## Contributing
 - Create a feature branch for each enhancement
 - Follow the existing page-object pattern for new tests
 - Run all tests locally before raising a PR
+
+---
 
 ## Tech Stack
 - Node.js
@@ -80,6 +86,8 @@ npx wdio config/wdio.ios.conf.js
 - Appium
 - Mocha & Chai
 - Git & Git LFS
+
+---
 
 ## Additional Notes
 - Tests are written to be platform-agnostic where possible, with separate configurations for Android and iOS
