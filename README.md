@@ -54,6 +54,7 @@ npx wdio config/wdio.ios.conf.js
 ---
 
 ## 🗂️ Project Structure
+```
 mobile-appium/
 ├── app/
 │   ├── android/
@@ -75,6 +76,7 @@ mobile-appium/
 ├── package-lock.json                      # Lockfile for Node.js dependencies
 └── README.md                              # Project documentation
 
+```
 ---
 
 ## Contributing
