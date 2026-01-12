@@ -79,14 +79,14 @@ mobile-appium/
 ```
 ---
 
-## Contributing
+## 🤝 Contributing
 - Create a feature branch for each enhancement
 - Follow the existing page-object pattern for new tests
 - Run all tests locally before raising a PR
 
 ---
 
-## Tech Stack
+## ⚙️ Tech Stack
 - Node.js
 - WebdriverIO
 - Appium
@@ -108,6 +108,6 @@ By using this framework, you will learn how to:
 
 ---
 
-## Additional Notes
+## 📌 Additional Notes
 - Tests are written to be platform-agnostic where possible, with separate configurations for Android and iOS
 - The framework is CI/CD ready and can be integrated with GitHub Actions, Jenkins, or CircleCI
