@@ -1,4 +1,4 @@
-// config/wdio.ios.conf.js
+// config/wdio.browser.android.conf.js
 
 import { join } from 'path';
 
@@ -10,7 +10,7 @@ export const config = {
     // Specify Test Files
     // ==================
     specs: [
-        '../test/native/ios/specs/**/*.js'
+        '../test/browser/android/specs/**/*.js'
     ],
 
     // ============
@@ -19,14 +19,16 @@ export const config = {
     maxInstances: 1,
     waitforTimeout: 10000,
     connectionRetryTimeout: 120000,
+
     capabilities: [{
-        // iOS Appium capabilities
-        platformName: 'iOS',
-        'appium:deviceName': 'iPhone 17 Pro',
-        'appium:platformVersion': '26.2',
-        'appium:automationName': 'XCUITest',
-        'appium:app': join(import.meta.dirname, '../app/ios/TestApp.app'),
-        'appium:newCommandTimeout': 240
+        // Android mobile browser capabilities
+        platformName: 'Android',
+        'appium:deviceName': 'Android Emulator', // use "adb devices" to get device name
+        'appium:automationName': 'UiAutomator2',
+        'appium:browserName': 'Chrome',          // <-- Mobile browser
+        'appium:newCommandTimeout': 240,         // Prevents session from closing during debugging
+        'appium:chromedriverAutodownload': true,  // Auto-download compatible ChromeDriver
+        'appium:chromedriverExecutableDir': '/Users/srishti/Documents/drivers' // Path to store downloaded ChromeDrivers
     }],
 
     // ===================
@@ -44,7 +46,14 @@ export const config = {
     // ===================
     // Appium Service
     // ===================
-    services: ['appium'],
+    services: [
+        ['appium', {
+            args: {
+                allowInsecure: '*:chromedriver_autodownload',
+            },
+            command: 'appium'
+        }]
+    ],
     appium: {
         command: 'appium'
     },
