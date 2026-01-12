@@ -62,8 +62,8 @@ mobile-appium/
 │   └── ios/
 │       └── TestApp.app                   # iOS test app
 ├── config/
-│   ├── wdio.conf.js                       # WebdriverIO config for Android
-│   └── wdio.ios.conf.js                   # WebdriverIO config for iOS
+│   ├── wdio.conf.js                      # WebdriverIO config for Android
+│   └── wdio.ios.conf.js                  # WebdriverIO config for iOS
 ├── test/
 │   └── native/
 │       ├── android/
@@ -72,9 +72,9 @@ mobile-appium/
 │       └── ios/
 │           ├── pageobjects/              # iOS Page Object classes
 │           └── specs/                    # iOS E2E test specs
-├── package.json                           # Node.js dependencies and scripts
-├── package-lock.json                      # Lockfile for Node.js dependencies
-└── README.md                              # Project documentation
+├── package.json                          # Node.js dependencies and scripts
+├── package-lock.json                     # Lockfile for Node.js dependencies
+└── README.md                             # Project documentation
 
 ```
 ---
@@ -92,6 +92,19 @@ mobile-appium/
 - Appium
 - Mocha & Chai
 - Git & Git LFS
+
+---
+
+## 🎯 Learning Outcomes
+
+By using this framework, you will learn how to:
+
+- Build a **scalable mobile automation framework** for real-world use  
+- Automate **native Android and iOS applications** using Appium  
+- Configure and run tests with **UiAutomator2** and **XCUITest**  
+- Apply the **Page Object Model** for maintainable test design  
+- Run tests on **emulators, simulators, and real devices**  
+- Follow **best practices** for stable, production-ready mobile automation  
 
 ---
 
