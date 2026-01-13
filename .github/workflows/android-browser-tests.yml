@@ -52,6 +52,8 @@ jobs:
           arch: x86_64
           profile: pixel_4
           emulator-options: -no-window -no-audio -no-snapshot
+          timeout: 15m         # Increase timeout
+          boot-timeout: 600    # Wait up to 600s (10 min) for boot
           script: echo "Emulator is ready"
     
       # Step 6: Wait for Emulator Boot
