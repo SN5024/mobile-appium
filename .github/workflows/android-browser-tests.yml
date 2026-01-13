@@ -20,7 +20,8 @@ jobs:
           node-version: 18
 
       - name: Install dependencies
-        run: npm ci
+        # run: npm ci # Uncomment to use package-lock.json for consistent installs
+        run: npm install # Install latest versions based on package.json
 
       # Step 1: Start Android Emulator
       - name: Start Android Emulator
