@@ -1,0 +1,49 @@
+name: Android Mobile Browser Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  android-browser:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Step 1: Start Android Emulator
+      - name: Start Android Emulator
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 33
+          target: google_apis
+          arch: x86_64
+          profile: pixel_4
+          emulator-options: -no-window -no-audio -no-snapshot
+          script: echo "Emulator is ready"
+    
+      - name: Wait for Emulator Boot
+        run: adb wait-for-device
+
+      # Step 2: Start Appium AFTER emulator
+      - name: Start Appium
+        run: |
+          npm install -g appium
+          appium --allow-insecure '*:chromedriver_autodownload' &
+        env:
+          CI: true
+
+      # Step 3: Run tests
+      - name: Run Android Browser Tests
+        run: npx wdio config/wdio.browser.android.conf.js
