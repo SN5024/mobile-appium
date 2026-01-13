@@ -19,14 +19,16 @@ export const config = {
 
     capabilities: [{
         platformName: 'Android',
-        'appium:device': 'Samsung Galaxy S25', // 2026 Standard
-        'appium:os_version': '15.0',          // 2026 Standard
-        'appium:browserName': 'Chrome',
+        // Use these specific W3C keys for 2026 compliance:
+        'appium:deviceName': 'Samsung Galaxy S25', 
+        'appium:platformVersion': '15.0',          
+        'appium:automationName': 'UiAutomator2',
+        'browserName': 'Chrome',
         'bstack:options': {
             projectName: 'Mobile Appium',
             buildName: 'Android Browser CI',
             sessionName: 'Android Chrome Test',
-            local: true // Must remain true for service to connect
+            local: true 
         }
     }],
 
