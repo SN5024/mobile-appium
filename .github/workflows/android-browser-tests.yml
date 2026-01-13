@@ -71,30 +71,11 @@ jobs:
           emulator-boot-timeout: 1200
           force-avd-creation: true
           script: |
-            # 1. Install Appium
-            npm install -g appium
-
-            # 2. Install uiautomator2 driver only if not installed
-            if ! appium driver list --installed | grep -q 'uiautomator2'; then
-              appium driver install uiautomator2
-            fi
-
-            # 3. Start Appium in background
+            npm install -g appium;
+            appium driver uninstall uiautomator2 || true;
+            appium driver install uiautomator2;
             appium --allow-insecure '*:chromedriver_autodownload' > appium.log 2>&1 &
-
-            # 4. Wait for Appium server to be ready
-            echo "Waiting for Appium server..."
-            for i in $(seq 1 30); do
-              if curl -s http://localhost:4723/status > /dev/null; then
-                echo "Appium is UP!"
-                break
-              fi
-              echo "Still waiting..."
-              sleep 2
-            done
-
-            # 5. Run tests (fail fast if tests fail)
-            set -e
-            mkdir -p "$HOME/.chromedriver_cache"
-            npx wdio config/wdio.browser.android.conf.js
-
+            echo "Waiting for Appium server...";
+            timeout 60 bash -c 'until curl -s http://localhost:4723/status; do sleep 2; done';
+            mkdir -p ~/.chromedriver_cache;
+            npx wdio config/wdio.browser.android.conf.js;
