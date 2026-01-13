@@ -4,6 +4,7 @@ import { join } from 'path';
 
 export const config = {
     runner: 'local',
+    port: 4723,
     path: '/',
 
     // ==================
