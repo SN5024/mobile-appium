@@ -1,15 +1,9 @@
-## CI Status
-
-| Workflow | Status |
-|----------|--------|
-| Android Emulator Tests | [![Android Mobile Browser Tests](https://github.com/SN5024/mobile-appium/actions/workflows/android-browser-tests.yml/badge.svg)](https://github.com/SN5024/mobile-appium/actions/workflows/android-browser-tests.yml) |
-| BrowserStack Android Tests | [![BrowserStack Android Tests](https://github.com/SN5024/mobile-appium/actions/workflows/browserstack-tests.yml/badge.svg)](https://github.com/SN5024/mobile-appium/actions/workflows/browserstack-tests.yml) |
-
 # 📱 Mobile Automation Framework (Appium + WebDriverIO + BrowserStack)
 
-A **robust, scalable, and modern automation framework** for **native mobile applications** on both **iOS and Android**. This framework provides **end-to-end test automation** with maintainable and reusable patterns, making it ideal for production-level mobile testing.
+[![Android Mobile Browser Tests](https://github.com/SN5024/mobile-appium/actions/workflows/android-browser-tests.yml/badge.svg)](https://github.com/SN5024/mobile-appium/actions/workflows/android-browser-tests.yml) 
+[![BrowserStack Android Tests](https://github.com/SN5024/mobile-appium/actions/workflows/browserstack-tests.yml/badge.svg)](https://github.com/SN5024/mobile-appium/actions/workflows/browserstack-tests.yml)
 
-> ⚡ **Note:** Currently supports **native app testing**. Mobile web browser testing will be added in the future.
+A **robust, scalable, and modern automation framework** for **native mobile apps** on **Android and iOS**, as well as **mobile browser testing**. Supports **Android CI with GitHub Actions** and **BrowserStack integration** for cross-device testing. Designed for **end-to-end test automation** with maintainable, reusable patterns, making it ideal for production-ready mobile testing.
 
 ---
 
