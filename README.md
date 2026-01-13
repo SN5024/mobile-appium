@@ -1,3 +1,5 @@
+![Android Mobile Browser Tests](https://github.com/SN5024/mobile-appium/actions/workflows/android-browser-tests.yml/badge.svg)
+
 # 📱 Mobile Automation Framework
 
 A **robust, scalable, and modern automation framework** for **native mobile applications** on both **iOS and Android**. This framework provides **end-to-end test automation** with maintainable and reusable patterns, making it ideal for production-level mobile testing.
