@@ -1,13 +1,17 @@
-// config/wdio.browserstack.conf.js
-
 export const config = {
     user: process.env.BROWSERSTACK_USERNAME,
     key: process.env.BROWSERSTACK_ACCESS_KEY,
 
-    runner: 'local',
-    specs: [
-        '../test/browser/android/specs/**/*.js'
+    // NEW: Manage tunnel connections automatically via the BrowserStack service
+    services: [
+        ['browserstack', { 
+            browserstackLocal: true,
+            opts: { forcelocal: false } 
+        }]
     ],
+
+    runner: 'local',
+    specs: ['../test/browser/android/specs/**/*.js'],
     maxInstances: 1,
     logLevel: 'info',
     framework: 'mocha',
@@ -15,14 +19,14 @@ export const config = {
 
     capabilities: [{
         platformName: 'Android',
-        'appium:device': 'Samsung Galaxy S23',
-        'appium:os_version': '13.0',
+        'appium:device': 'Samsung Galaxy S25', // 2026 Standard
+        'appium:os_version': '15.0',          // 2026 Standard
         'appium:browserName': 'Chrome',
         'bstack:options': {
             projectName: 'Mobile Appium',
             buildName: 'Android Browser CI',
             sessionName: 'Android Chrome Test',
-            local: true // enable BrowserStack Local
+            local: true // Must remain true for service to connect
         }
     }],
 
