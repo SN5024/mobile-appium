@@ -36,7 +36,7 @@ jobs:
 
       # Step 4: Start BrowserStack Local // Using BrowserStack GitHub Action
       - name: Start BrowserStack Local
-        uses: browserstack/github-action@v1
+        uses: browserstack/github-actions/setup-local@v1
         with:
           accessKey: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
 
