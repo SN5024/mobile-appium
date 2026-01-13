@@ -23,12 +23,15 @@ export const config = {
     capabilities: [{
         // Android mobile browser capabilities
         platformName: 'Android',
-        'appium:deviceName': 'Android Emulator', // use "adb devices" to get device name
+        'appium:deviceName': 'Android Emulator', // Use emulator for local runs
         'appium:automationName': 'UiAutomator2',
         'appium:browserName': 'Chrome',          // <-- Mobile browser
         'appium:newCommandTimeout': 240,         // Prevents session from closing during debugging
         'appium:chromedriverAutodownload': true,  // Auto-download compatible ChromeDriver
-        'appium:chromedriverExecutableDir': '/Users/srishti/Documents/drivers' // Path to store downloaded ChromeDrivers
+        'appium:chromedriverExecutableDir': process.env.HOME + '/.chromedriver_cache', // Cache ChromeDrivers in home directory
+        // 'appium:chromedriverExecutableDir': '/Users/srishti/Documents/drivers' // Path to store downloaded ChromeDrivers
+        // safe for local runs; adjust for CI as needed
+
     }],
 
     // ===================
@@ -46,14 +49,14 @@ export const config = {
     // ===================
     // Appium Service
     // ===================
-    services: [
+   /* services: [
         ['appium', {
             args: {
                 allowInsecure: '*:chromedriver_autodownload',
             },
             command: 'appium'
         }]
-    ],
+    ], */  // Moved to standalone appium config for better control in CI, use this block for local runs if needed
     appium: {
         command: 'appium'
     },

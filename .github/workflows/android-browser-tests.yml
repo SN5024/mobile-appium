@@ -11,19 +11,39 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Step 0: Checkout code
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # Step 1: Cache Node modules
+      - name: Cache Node modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      # Step 2: Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 18
-
+      
+      # Step 3: Install dependencies
       - name: Install dependencies
-        # run: npm ci # Uncomment to use package-lock.json for consistent installs
-        run: npm install # Install latest versions based on package.json
+        run: npm ci # Uncomment to use package-lock.json for consistent installs
+        # run: npm install # Install latest versions based on package.json
+      
+      # Step 4: Cache ChromeDriver
+      - name: Cache ChromeDriver
+        uses: actions/cache@v3
+        with:
+          path: ~/.chromedriver_cache
+          key: chromedriver-${{ runner.os }}
+          restore-keys: chromedriver-
 
-      # Step 1: Start Android Emulator
+      # Step 5: Start Android Emulator
       - name: Start Android Emulator
         uses: reactivecircus/android-emulator-runner@v2
         with:
@@ -34,10 +54,19 @@ jobs:
           emulator-options: -no-window -no-audio -no-snapshot
           script: echo "Emulator is ready"
     
+      # Step 6: Wait for Emulator Boot
       - name: Wait for Emulator Boot
-        run: adb wait-for-device
+        run: |
+          timeout=300
+          booted=""
+          until [[ "$booted" == "1" ]] || [ $timeout -eq 0 ]; do
+          booted=$(adb shell getprop sys.boot_completed 2>/dev/null | tr -d '\r')
+            echo "Waiting for emulator to boot..."
+            sleep 5
+            timeout=$((timeout-5))
+          done  
 
-      # Step 2: Start Appium AFTER emulator
+      # Step 7: Start Appium
       - name: Start Appium
         run: |
           npm install -g appium
@@ -45,6 +74,6 @@ jobs:
         env:
           CI: true
 
-      # Step 3: Run tests
+      # Step 8: Run Android Browser Tests
       - name: Run Android Browser Tests
         run: npx wdio config/wdio.browser.android.conf.js
