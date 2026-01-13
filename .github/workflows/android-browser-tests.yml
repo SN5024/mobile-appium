@@ -43,7 +43,7 @@ jobs:
           key: chromedriver-${{ runner.os }}
           restore-keys: chromedriver-
       
-      # Step 4.1: Free up disk space`
+      # Step 4.1: Free up disk space
       - name: Free Disk Space
         run: |
           sudo rm -rf /usr/share/dotnet
