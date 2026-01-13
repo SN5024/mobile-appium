@@ -1,4 +1,5 @@
-![Android Mobile Browser Tests](https://github.com/SN5024/mobile-appium/actions/workflows/android-browser-tests.yml/badge.svg)
+[![Android Mobile Browser Tests](https://github.com/SN5024/mobile-appium/actions/workflows/android-browser-tests.yml/badge.svg)](https://github.com/SN5024/mobile-appium/actions/workflows/android-browser-tests.yml)
+
 
 # 📱 Mobile Automation Framework
 
@@ -94,6 +95,41 @@ mobile-appium/
 - Appium
 - Mocha & Chai
 - Git & Git LFS
+
+---
+
+## 🚀 Mobile Automation & CI Integration
+
+This project demonstrates a production-style mobile browser automation setup using **WebdriverIO + Appium**, executed against a real Android Emulator and fully integrated with **GitHub Actions CI**.
+
+--- 
+
+### 🔹 Key Highlights
+- Android mobile browser automation using **Chrome on Emulator**
+- Appium-driven execution with **automatic ChromeDriver management**
+- GitHub Actions pipeline with:
+  - Emulator provisioning
+  - Hardware acceleration (KVM)
+  - Dependency & driver caching
+  - Appium server lifecycle handling
+- Optimized for **CI stability and performance**
+- Designed with **real-world QA practices**
+
+---
+
+### 🔹 Test Coverage
+- Mobile web login flow validation
+- Real-device browser interactions
+- CI-safe synchronization and reporting
+
+---
+
+### 🔹 CI Workflow
+On every push or pull request:
+1. Android Emulator boots on GitHub Actions
+2. Appium server starts with secure driver auto-download
+3. Mobile browser tests execute via WebdriverIO
+4. Logs are captured and uploaded for debugging
 
 ---
 
