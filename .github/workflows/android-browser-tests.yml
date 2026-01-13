@@ -42,52 +42,43 @@ jobs:
           path: ~/.chromedriver_cache
           key: chromedriver-${{ runner.os }}
           restore-keys: chromedriver-
+      
+      # Step 4.1: Free up disk space`
+      - name: Free Disk Space
+        run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /opt/ghc
+          sudo rm -rf "/usr/local/share/boost"
+          sudo rm -rf "$AGENT_TOOLSDIRECTORY"
 
-      # NEW STEP: Enable Kernel based Virtual Machine KVM, (Crucial for speed on Ubuntu)
+      # Step 4.2: Enable Hardware Acceleration: Enable Kernel based Virtual Machine KVM, (Crucial for speed on Ubuntu)
       - name: Enable KVM group perms
         run: |
           echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
           sudo udevadm control --reload-rules
           sudo udevadm trigger --name-match=kvm
 
-      # Step 5: Start Android Emulator
-      - name: Start Android Emulator
+      # Step 5: Start Android Emulator and Run Tests
+      - name: Start Android Emulator & Run Tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 33
           target: google_apis
           arch: x86_64
           profile: pixel_4
-          # Updated options: -gpu swiftshader is essential for stability on Linux runners
-          emulator-options: -no-window -no-audio -no-snapshot -gpu swiftshader
+          emulator-options: -no-window -no-audio -no-snapshot -gpu swiftshader -memory 2048 -no-boot-anim
           disable-animations: true
-          # Increase boot-timeout to 900 (15 min) for API 33 on standard runners
-          emulator-boot-timeout: 900
-          script: echo "Emulator is ready"
-    
-      # Step 6: Wait for Emulator Boot
-      - name: Wait for Emulator Boot
-        run: |
-          timeout=300
-          booted=""
-          until [[ "$booted" == "1" ]] || [ $timeout -eq 0 ]; do
-          booted=$(adb shell getprop sys.boot_completed 2>/dev/null | tr -d '\r')
-            echo "Waiting for emulator to boot..."
-            sleep 5
-            timeout=$((timeout-5))
-          done  
-          
-      # Step 7: Start Appium
-      - name: Start Appium
-        run: |
-          npm install -g appium
-          # Explicitly install the Android driver
-          appium driver install uiautomator2
-          # Start server with necessary insecure features for chromedriver
-          appium --allow-insecure '*:chromedriver_autodownload' &
-        env:
-          CI: true
-
-      # Step 8: Run Android Browser Tests
-      - name: Run Android Browser Tests
-        run: npx wdio config/wdio.browser.android.conf.js
+          emulator-boot-timeout: 1200
+          force-avd-creation: true
+          # THE SCRIPT BLOCK IS WHERE EVERYTHING HAPPENS
+          script: |
+            # 1. Install and Start Appium in the background
+            npm install -g appium
+            appium driver install uiautomator2
+            appium --allow-insecure '*:chromedriver_autodownload' &
+            
+            # 2. Wait a few seconds for Appium to initialize
+            sleep 10
+            
+            # 3. Run your tests
+            npx wdio config/wdio.browser.android.conf.js
