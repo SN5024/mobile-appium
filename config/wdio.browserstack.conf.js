@@ -4,7 +4,7 @@ export const config = {
 
     runner: 'local',
     specs: [
-        './test/browser/android/specs/**/*.js'
+        '../test/browser/android/specs/**/*.js'
     ],
     maxInstances: 1,
     logLevel: 'info',
