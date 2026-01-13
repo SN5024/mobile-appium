@@ -43,6 +43,13 @@ jobs:
           key: chromedriver-${{ runner.os }}
           restore-keys: chromedriver-
 
+      # NEW STEP: Enable Kernel based Virtual Machine KVM, (Crucial for speed on Ubuntu)
+      - name: Enable KVM group perms
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
       # Step 5: Start Android Emulator
       - name: Start Android Emulator
         uses: reactivecircus/android-emulator-runner@v2
@@ -51,9 +58,11 @@ jobs:
           target: google_apis
           arch: x86_64
           profile: pixel_4
-          emulator-options: -no-window -no-audio -no-snapshot
-          timeout: 15m         # Increase timeout
-          boot-timeout: 600    # Wait up to 600s (10 min) for boot
+          # Updated options: -gpu swiftshader is essential for stability on Linux runners
+          emulator-options: -no-window -no-audio -no-snapshot -gpu swiftshader
+          disable-animations: true
+          # Increase boot-timeout to 900 (15 min) for API 33 on standard runners
+          emulator-boot-timeout: 900
           script: echo "Emulator is ready"
     
       # Step 6: Wait for Emulator Boot
@@ -67,11 +76,14 @@ jobs:
             sleep 5
             timeout=$((timeout-5))
           done  
-
+          
       # Step 7: Start Appium
       - name: Start Appium
         run: |
           npm install -g appium
+          # Explicitly install the Android driver
+          appium driver install uiautomator2
+          # Start server with necessary insecure features for chromedriver
           appium --allow-insecure '*:chromedriver_autodownload' &
         env:
           CI: true
